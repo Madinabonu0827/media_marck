@@ -61,7 +61,6 @@ router.post(
   [
     body('title').notEmpty().withMessage('Title is required'),
     body('type').isIn(['book', 'game', 'movie', 'series']).withMessage('Type must be book, game, movie, or series'),
-    body('releaseYear').isInt({ min: 1000, max: 9999 }).withMessage('Valid release year is required'),
   ],
   async (req: AuthRequest, res: Response) => {
     try {
@@ -93,9 +92,23 @@ router.post('/upload-cover', auth, upload.single('cover'), async (req: AuthReque
     const dataURI = `data:${req.file.mimetype};base64,${b64}`
     const result = await cloudinary.uploader.upload(dataURI, {
       folder: 'mediatrack/covers',
-      transformation: [{ width: 500, height: 700, crop: 'fill' }],
+      transformation: [{ width: 500, height: 700, crop: 'fill' },
+      ],
     })
-    res.json({ success: true, data: { coverUrl: result.secure_url } })
+
+    const coverUrl = result.secure_url
+    const { mediaId } = req.body
+
+    if (mediaId) {
+      const media = await MediaItem.findByIdAndUpdate(mediaId, { coverUrl }, { new: true })
+      if (!media) {
+        res.status(404).json({ success: false, message: 'Media not found' })
+        return
+      }
+      res.json({ success: true, data: { coverUrl, media } })
+    } else {
+      res.json({ success: true, data: { coverUrl } })
+    }
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error' })
   }

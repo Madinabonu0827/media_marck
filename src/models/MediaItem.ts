@@ -17,7 +17,7 @@ const mediaItemSchema = new Schema<IMediaItem>({
   coverUrl: { type: String, default: '' },
   description: { type: String, default: '' },
   genres: [{ type: String, trim: true }],
-  releaseYear: { type: Number, required: true },
+  releaseYear: { type: Number },
   isTeamGame: { type: Boolean, default: false },
   platform: [{ type: String, trim: true }],
 }, { timestamps: true })

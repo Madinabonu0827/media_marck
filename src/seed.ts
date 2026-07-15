@@ -57,6 +57,11 @@ const mediaItems = [
   { title: 'The Office', type: 'series', genres: ['Comedy', 'Mockumentary'], releaseYear: 2005, description: 'A mockumentary on a group of office workers' },
   { title: 'Interstellar', type: 'movie', genres: ['Sci-Fi', 'Drama'], releaseYear: 2014, description: 'A team of explorers travel through a wormhole in space' },
   { title: 'The Mandalorian', type: 'series', genres: ['Sci-Fi', 'Action'], releaseYear: 2019, description: 'A bounty hunter in the outer reaches of the galaxy' },
+  { title: 'Red Dead Redemption 2', type: 'game', genres: ['Action', 'Open World'], releaseYear: 2018, description: 'Epic tale of life in America\'s unforgiving heartland', isTeamGame: false, platform: ['PC', 'PS5', 'Xbox'] },
+  { title: 'God of War Ragnarok', type: 'game', genres: ['Action', 'Adventure'], releaseYear: 2022, description: 'Kratos and Atreus embark on an epic journey', isTeamGame: false, platform: ['PS5', 'PC'] },
+  { title: "Baldur's Gate 3", type: 'game', genres: ['RPG', 'Strategy'], releaseYear: 2023, description: 'Epic RPG set in the Forgotten Realms', isTeamGame: true, platform: ['PC', 'PS5', 'Xbox'] },
+  { title: 'GTA V', type: 'game', genres: ['Action', 'Open World'], releaseYear: 2013, description: 'Open world action-adventure in Los Santos', isTeamGame: true, platform: ['PC', 'PS5', 'Xbox'] },
+  { title: 'Minecraft', type: 'game', genres: ['Sandbox', 'Survival'], releaseYear: 2011, description: 'A game about placing blocks and going on adventures', isTeamGame: true, platform: ['PC', 'PS5', 'Xbox', 'Switch', 'Mobile'] },
 ]
 
 const statuses: Array<'planned' | 'in_progress' | 'completed' | 'dropped'> = ['planned', 'in_progress', 'completed', 'dropped']
